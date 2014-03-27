@@ -34,7 +34,7 @@ fi
 # HACK, EOL troubles
 sed -i 's/\\/\//g' ms/do_win64a.bat ms/do_ms.bat
 # HACK, see http://stackoverflow.com/questions/7680189/openssl-cant-build-in-vc-2010
-sed -i 's/chop;/chop;s\/\\r$\/\/;/' util/mk1mf.pl
+sed -i 's/chop;$/chop;s\/\\r$\/\/;/' util/mk1mf.pl
 if [ "$ARCH" = "amd64" ]; then
 	cmd /c "${DIR}/helper.bat cmd /c ms\\do_win64a.bat"
 else
