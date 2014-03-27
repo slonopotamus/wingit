@@ -7,6 +7,8 @@ Build dependencies
  * [MSVC Express 2013](http://www.microsoft.com/en-us/download/details.aspx?id=40787)
  * [MinGW](http://sourceforge.net/projects/mingw/files/Installer/mingw-get-setup.exe/download)
   * mingw-developer-toolkit
+  * msys-libtool
+  * msys-automake
 
 Building
 --------

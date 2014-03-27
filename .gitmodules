@@ -4,3 +4,9 @@
 [submodule "zlib"]
 	path = zlib
 	url = git@github.com:madler/zlib.git
+[submodule "curl"]
+	path = curl
+	url = git@github.com:bagder/curl.git
+[submodule "openssl"]
+	path = openssl
+	url = git@github.com:openssl/openssl.git
