@@ -19,7 +19,7 @@ export CURLDIR="${LIBS}/curl-7.30.0.2/${ARCH}"
 export DESTDIR="${DIR}/stage-${ARCH}"
 
 pushd "${ZLIB_PATH}"
-cmd /c "${DIR}/helper.bat nmake /f win32/Makefile.msc"
+cmd /c "${DIR}/helper.bat nmake /f win32/Makefile.msc clean all"
 popd
 
 pushd "${DIR}/git"
