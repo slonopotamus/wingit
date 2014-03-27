@@ -40,7 +40,7 @@ if [ "$ARCH" = "amd64" ]; then
 else
 	cmd /c "${DIR}/helper.bat cmd /c ms\\do_ms.bat"
 fi
-cmd /c "${DIR}/helper.bat nmake /f ms/ntdll.mak clean"
+cmd /c "${DIR}/helper.bat nmake /f ms/ntdll.mak clean" || true
 cmd /c "${DIR}/helper.bat nmake /f ms/ntdll.mak"
 # For git
 cp -R inc32/* include
