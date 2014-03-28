@@ -1,6 +1,8 @@
 WinGit
 ======
 
+WinGit is an effort to provide native x86 and x64 builds of [Git](http://git-scm.com) for Windows.
+
 Build dependencies
 ------------------
 
