@@ -60,7 +60,7 @@ cp libcurl_imp.lib "${CURLDIR}/libcurl.lib"
 popd
 
 pushd "${DIR}/git"
-cmd /c "${DIR}/helper.bat make MSVC=1 INLINE=__inline prefix=/ NO_TCLTK=1 NO_PERL=1 clean install"
+cmd /c "${DIR}/helper.bat make MSVC=1 prefix=/ NO_TCLTK=1 NO_PERL=1 clean install"
 popd
 
 cp "${ZLIB_PATH}/zlib1.dll" "${CURLDIR}/lib/libcurl.dll" "${OPENSSLDIR}/out32dll/libeay32.dll" "${OPENSSLDIR}/out32dll/ssleay32.dll" "${DESTDIR}/bin"
