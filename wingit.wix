@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xsi:schemaLocation="http://schemas.microsoft.com/wix/2006/wi wix.xsd">
+    <?define ProductName="WinGit" ?>
+    <?define ProductVersion="0.1" ?>
+
+    <?if $(sys.BUILDARCH)="x86"?>
+    <?define Program_Files="ProgramFilesFolder"?>
+    <?define IsWin64="no"?>
+    <?elseif $(sys.BUILDARCH)="x64"?>
+    <?define Program_Files="ProgramFiles64Folder"?>
+    <?define IsWin64="yes"?>
+    <?else?>
+    <?error Unsupported value of sys.BUILDARCH=$(sys.BUILDARCH)?>
+    <?endif?>
+
+    <Product Id="*"
+             Name="$(var.ProductName)"
+             UpgradeCode="f8731d15-f65f-48ef-8612-24ef5d491fef"
+             Language="1033"
+             Version="$(var.ProductVersion)"
+             Manufacturer="Git Community">
+        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
+        <MajorUpgrade AllowSameVersionUpgrades="yes"
+                      DowngradeErrorMessage="A later version of $(var.ProductName) is already installed"/>
+        <Media Id="1" Cabinet="media1.cab" EmbedCab="yes"/>
+        <Feature Id="ProductFeature" Level="1">
+            <ComponentGroupRef Id="files"/>
+        </Feature>
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
+        <UIRef Id="WixUI_InstallDir"/>
+
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="$(var.Program_Files)">
+                <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)"/>
+            </Directory>
+        </Directory>
+    </Product>
+</Wix>

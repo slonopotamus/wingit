@@ -10,7 +10,9 @@ Build dependencies
  * [MinGW](http://sourceforge.net/projects/mingw/files/Installer/mingw-get-setup.exe/download)
   * mingw-developer-toolkit
   * msys-libtool
-  * msys-automake
+  * msys-unzip
+  * msys-wget
+ * [WiX Toolset](http://wixtoolset.org)
 
 Building
 --------
@@ -18,3 +20,4 @@ Building
  * `cd` to wingit directory
  * `./build.sh [x86|x86_amd64]`
  * Results go to `stage-[x86|amd64]`
+ * To build MSI installer, run `./installer.sh [x86|amd64]`
