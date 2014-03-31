@@ -27,6 +27,7 @@
         <Media Id="1" Cabinet="media1.cab" EmbedCab="yes"/>
         <Feature Id="ProductFeature" Level="1">
             <ComponentGroupRef Id="files"/>
+            <ComponentRef Id="RegeditComponent"/>
         </Feature>
         <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
         <UIRef Id="WixUI_InstallDir"/>
@@ -35,6 +36,11 @@
             <Directory Id="$(var.Program_Files)">
                 <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)"/>
             </Directory>
+            <Component Id="RegeditComponent" Guid="7896ed21-5d9c-49a3-99ed-042976d5ff75">
+                <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\git.exe">
+                    <RegistryValue Type="string" Value="[INSTALLLOCATION]bin\git.exe" KeyPath="yes"/>
+                </RegistryKey>
+            </Component>
         </Directory>
     </Product>
 </Wix>
