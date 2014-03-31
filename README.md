@@ -3,6 +3,8 @@ WinGit
 
 WinGit is an effort to provide native x86 and x64 builds of [Git](http://git-scm.com) for Windows.
 
+[**DOWNLOAD**](https://github.com/slonopotamus/wingit/releases)
+
 Runtime dependencies
 --------------------
  * [Visual C++ Redistributable Packages for Visual Studio 2013](http://www.microsoft.com/en-us/download/details.aspx?id=40784)
