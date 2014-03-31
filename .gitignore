@@ -1,1 +1,6 @@
 /stage-*
+/wix-tmp
+/mingw
+/mingw-get.zip
+*.msi
+*.wixpdb
