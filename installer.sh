@@ -20,7 +20,7 @@ if [ ! -f mingw-get.zip ]; then
 fi
 
 unzip -o -d mingw mingw-get.zip
-./mingw/bin/mingw-get.exe install msys-base
+./mingw/bin/mingw-get.exe install msys-base msys-openssh
 
 rsync --progress -h -a mingw/msys/1.0/ stage-${ARCH}/
 
