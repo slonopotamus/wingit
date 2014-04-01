@@ -21,11 +21,12 @@
              Language="1033"
              Version="$(var.ProductVersion)"
              Manufacturer="Git Community">
-        <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
+        <Package InstallerVersion="405" Compressed="yes" InstallScope="perMachine"/>
         <MajorUpgrade AllowSameVersionUpgrades="yes"
                       DowngradeErrorMessage="A later version of $(var.ProductName) is already installed"/>
         <Media Id="1" Cabinet="media1.cab" EmbedCab="yes"/>
         <Feature Id="ProductFeature" Level="1">
+            <MergeRef Id="VCRedist"/>
             <ComponentGroupRef Id="files"/>
             <ComponentRef Id="RegeditComponent"/>
         </Feature>
@@ -33,6 +34,9 @@
         <UIRef Id="WixUI_InstallDir"/>
 
         <Directory Id="TARGETDIR" Name="SourceDir">
+            <Merge Id="VCRedist"
+                   SourceFile="$(env.COMMONPROGRAMFILES)/Merge Modules/Microsoft_VC120_CRT_$(sys.BUILDARCH).msm" DiskId="1"
+                   Language="0"/>
             <Directory Id="$(var.Program_Files)">
                 <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)"/>
             </Directory>
