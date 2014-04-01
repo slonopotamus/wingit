@@ -25,5 +25,3 @@ Building
  * Enter MinGW: `C:\MinGW\msys\1.0\msys.bat`
  * `cd` to wingit directory
  * `./build.sh [x86|x86_amd64]`
- * Results go to `stage-[x86|amd64]`
- * To build MSI installer, run `./installer.sh [x86|amd64]`
