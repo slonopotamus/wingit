@@ -62,6 +62,9 @@ pushd "${DIR}/git"
 cmd.exe /c "${DIR}/helper.bat make MSVC=1 prefix=/ NO_TCLTK=1 NO_PERL=1 CFLAGS=-Zi LDFLAGS=-debug clean install"
 popd
 
+mkdir -p "${DESTDIR}/cmd"
+cmd.exe /c "helper.bat cl shell32.lib shlwapi.lib git-wrapper.c /Fe${DESTDIR}/cmd/git.exe"
+
 cp "${ZLIB_PATH}/zlib1.dll" "${CURLDIR}/lib/libcurl.dll" "${OPENSSLDIR}/out32dll/libeay32.dll" "${OPENSSLDIR}/out32dll/ssleay32.dll" "${DESTDIR}/bin"
 
 mkdir -p mingw/bin

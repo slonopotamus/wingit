@@ -35,14 +35,17 @@
 
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Merge Id="VCRedist"
-                   SourceFile="$(env.COMMONPROGRAMFILES)/Merge Modules/Microsoft_VC120_CRT_$(sys.BUILDARCH).msm" DiskId="1"
+                   SourceFile="$(env.COMMONPROGRAMFILES)/Merge Modules/Microsoft_VC120_CRT_$(sys.BUILDARCH).msm"
+                   DiskId="1"
                    Language="0"/>
             <Directory Id="$(var.Program_Files)">
                 <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)"/>
             </Directory>
             <Component Id="RegeditComponent" Guid="7896ed21-5d9c-49a3-99ed-042976d5ff75">
+                <Environment Id="Environment" Name="PATH" Action="set" Part="last" Value="[INSTALLLOCATION]cmd"
+                             System="yes"/>
                 <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\git.exe">
-                    <RegistryValue Type="string" Value="[INSTALLLOCATION]bin\git.exe" KeyPath="yes"/>
+                    <RegistryValue Type="string" Value="[INSTALLLOCATION]cmd\git.exe" KeyPath="yes"/>
                 </RegistryKey>
             </Component>
         </Directory>
