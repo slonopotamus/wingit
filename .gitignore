@@ -3,4 +3,5 @@
 /mingw
 /mingw-get.zip
 *.msi
+*.stackdump
 *.wixpdb
