@@ -59,7 +59,7 @@ cp libcurl_imp.lib "${CURLDIR}/libcurl.lib"
 popd
 
 pushd "${DIR}/git"
-cmd.exe /c "${DIR}/helper.bat make MSVC=1 prefix=/ NO_TCLTK=1 NO_PERL=1 CFLAGS=-Zi LDFLAGS=-debug clean install"
+cmd.exe /c "${DIR}/helper.bat make MSVC=1 prefix=/ DEFAULT_EDITOR=/bin/vim.exe NO_TCLTK=1 NO_PERL=1 CFLAGS=-Zi LDFLAGS=-debug clean install"
 popd
 
 mkdir -p "${DESTDIR}/cmd"
@@ -74,7 +74,7 @@ if [ ! -f mingw-get.zip ]; then
 fi
 
 unzip -o -d mingw mingw-get.zip
-./mingw/bin/mingw-get.exe install msys-base msys-openssh
+./mingw/bin/mingw-get.exe install msys-base msys-openssh msys-vim
 
 rsync --progress -h -a mingw/msys/1.0/ stage-${ARCH}
 
