@@ -65,7 +65,8 @@ popd
 mkdir -p "${DESTDIR}/cmd"
 cmd.exe /c "helper.bat cl shell32.lib shlwapi.lib git-wrapper.c /Fe${DESTDIR}/cmd/git.exe"
 
-cp "${ZLIB_PATH}/zlib1.dll" "${CURLDIR}/lib/libcurl.dll" "${OPENSSLDIR}/out32dll/libeay32.dll" "${OPENSSLDIR}/out32dll/ssleay32.dll" "${DESTDIR}/bin"
+cp "${ZLIB_PATH}/zlib1.dll" "${CURLDIR}/lib/libcurl.dll" "${OPENSSLDIR}/out32dll/libeay32.dll" \
+	"${OPENSSLDIR}/out32dll/ssleay32.dll" "${DESTDIR}/bin"
 
 mkdir -p mingw/bin
 
@@ -75,6 +76,10 @@ fi
 
 unzip -o -d mingw mingw-get.zip
 ./mingw/bin/mingw-get.exe install msys-base msys-openssh msys-vim
+
+if [ ! -f mingw/msys/1.0/etc/curl-ca-bundle.crt ]; then
+	./curl/lib/mk-ca-bundle.pl mingw/msys/1.0/etc/curl-ca-bundle.crt
+fi
 
 rsync --progress -h -a mingw/msys/1.0/ stage-${ARCH}
 

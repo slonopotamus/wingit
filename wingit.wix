@@ -28,10 +28,20 @@
         <Feature Id="ProductFeature" Level="1">
             <MergeRef Id="VCRedist"/>
             <ComponentGroupRef Id="files"/>
-            <ComponentRef Id="RegeditComponent"/>
+            <ComponentRef Id="MiscComponent"/>
         </Feature>
         <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
+        <Property Id="INSTALLLOCATIONSAFE" Hidden="yes"/>
         <UIRef Id="WixUI_InstallDir"/>
+
+        <CustomAction Id="PrepareAction" Script="vbscript" Return="check">
+            <![CDATA[
+            Session.Property("INSTALLLOCATIONSAFE") = Replace(Session.Property("INSTALLLOCATION"), "\", "\\")
+        ]]>
+        </CustomAction>
+        <InstallExecuteSequence>
+            <Custom Action="PrepareAction" Before="InstallInitialize"/>
+        </InstallExecuteSequence>
 
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Merge Id="VCRedist"
@@ -39,9 +49,19 @@
                    DiskId="1"
                    Language="0"/>
             <Directory Id="$(var.Program_Files)">
-                <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)"/>
+                <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)">
+                    <Directory Id="ETCDIR" Name="etc"/>
+                </Directory>
             </Directory>
-            <Component Id="RegeditComponent" Guid="7896ed21-5d9c-49a3-99ed-042976d5ff75">
+            <Component Id="MiscComponent" Guid="7896ed21-5d9c-49a3-99ed-042976d5ff75">
+                <IniFile Id="gitconfig0" Directory="ETCDIR" Action="addLine" Name="gitconfig" Section="http"
+                         Key="sslCAinfo" Value="[INSTALLLOCATIONSAFE]etc\\curl-ca-bundle.crt"/>
+                <IniFile Id="gitconfig1" Directory="ETCDIR" Action="addLine" Name="gitconfig" Section="color"
+                         Key="ui" Value="auto"/>
+                <IniFile Id="gitconfig2" Directory="ETCDIR" Action="addLine" Name="gitconfig" Section="help"
+                         Key="format" Value="html"/>
+                <IniFile Id="gitconfig3" Directory="ETCDIR" Action="addLine" Name="gitconfig" Section="rebase"
+                         Key="autosquash" Value="true"/>
                 <Environment Id="Environment" Name="PATH" Action="set" Part="last" Value="[INSTALLLOCATION]cmd"
                              System="yes"/>
                 <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\git.exe">

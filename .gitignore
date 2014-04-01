@@ -2,6 +2,7 @@
 /wix-tmp
 /mingw
 /mingw-get.zip
+/certdata.txt
 *.msi
 *.obj
 *.stackdump
