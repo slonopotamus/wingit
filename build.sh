@@ -92,7 +92,8 @@ WIX_ARCH="${ARCH/amd64/x64}"
 
 "${WIX}/bin/heat.exe" dir "${DESTDIR}" -dr INSTALLLOCATION -cg files -o wix-tmp/files-${ARCH}.wxs -srd -sfrag -suid -ag -sw5150 -nologo
 "${WIX}/bin/candle.exe" -arch ${WIX_ARCH} wix-tmp/files-${ARCH}.wxs -o wix-tmp/files-${WIX_ARCH}.wixobj -nologo
-"${WIX}/bin/candle.exe" -arch ${WIX_ARCH} wingit.wix -o wix-tmp/wingit-${WIX_ARCH}.wixobj -nologo
+"${WIX}/bin/candle.exe" -arch ${WIX_ARCH} wingit.wix -o wix-tmp/wingit-${WIX_ARCH}.wixobj -nologo \
+	"-dGitVersion=$(awk -F ' = ' '{print $2}' git/GIT-VERSION-FILE)"
 "${WIX}/bin/light.exe" -sw1076 -ext WixUIExtension -o WinGit-${WIX_ARCH}.msi -b stage-${ARCH} -nologo \
-	 wix-tmp/wingit-${WIX_ARCH}.wixobj wix-tmp/files-${WIX_ARCH}.wixobj
+	wix-tmp/wingit-${WIX_ARCH}.wixobj wix-tmp/files-${WIX_ARCH}.wixobj
 

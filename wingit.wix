@@ -16,11 +16,11 @@
     <?endif?>
 
     <Product Id="*"
-             Name="$(var.ProductName)"
+             Name="$(var.ProductName) $(var.ProductVersion) with Git $(var.GitVersion)"
              UpgradeCode="f8731d15-f65f-48ef-8612-24ef5d491fef"
              Language="1033"
              Version="$(var.ProductVersion)"
-             Manufacturer="Git Community">
+             Manufacturer="The Git Development Community">
         <Package InstallerVersion="405" Compressed="yes" InstallScope="perMachine"/>
         <MajorUpgrade AllowSameVersionUpgrades="yes"
                       DowngradeErrorMessage="A later version of $(var.ProductName) is already installed"/>
