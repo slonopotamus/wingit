@@ -32,6 +32,9 @@
         </Feature>
         <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
         <Property Id="INSTALLLOCATIONSAFE" Hidden="yes"/>
+		<WixVariable Id="WixUILicenseRtf" Value="gpl-2.0.rtf" />
+		<Icon Id="git.ico" SourceFile="git.ico"/>
+		<Property Id="ARPPRODUCTICON" Value="git.ico" />
         <UIRef Id="WixUI_InstallDir"/>
 
         <CustomAction Id="PrepareAction" Script="vbscript" Return="check">
