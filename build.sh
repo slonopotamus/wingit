@@ -55,7 +55,6 @@ cmd.exe /c "${DIR}/helper.bat nmake /f Makefile.vc6 clean"
 cmd.exe /c "${DIR}/helper.bat nmake /f Makefile.vc6 MACHINE=${ARCH/amd64/x64} CFG=release-dll-ssl-dll-zlib-dll all"
 # For git
 cp libcurl_imp.lib "${CURLDIR}/libcurl.lib"
-cp libcurl_imp.lib "${CURLDIR}/libcurl.lib"
 popd
 
 pushd "${DIR}/git"
