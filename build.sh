@@ -58,7 +58,7 @@ cp libcurl_imp.lib "${CURLDIR}/libcurl.lib"
 popd
 
 pushd "${DIR}/git"
-cmd.exe /c "${DIR}/helper.bat make MSVC=1 prefix=/ DEFAULT_EDITOR=/bin/vim.exe NO_TCLTK=1 NO_PERL=1 CFLAGS=-Zi LDFLAGS=-debug clean install"
+cmd.exe /c "${DIR}/helper.bat make MSVC=1 prefix=/ DEFAULT_EDITOR=/bin/vim.exe NO_TCLTK=1 CFLAGS=-Zi LDFLAGS=-debug clean install"
 popd
 
 mkdir -p "${DESTDIR}/cmd"
@@ -74,7 +74,7 @@ if [ ! -f mingw-get.zip ]; then
 fi
 
 unzip -o -d mingw mingw-get.zip
-./mingw/bin/mingw-get.exe install msys-base msys-openssh msys-vim
+./mingw/bin/mingw-get.exe install msys-base msys-openssh msys-vim msys-perl
 
 if [ ! -f mingw/msys/1.0/etc/curl-ca-bundle.crt ]; then
 	./curl/lib/mk-ca-bundle.pl mingw/msys/1.0/etc/curl-ca-bundle.crt
@@ -89,7 +89,7 @@ fi
 
 WIX_ARCH="${ARCH/amd64/x64}"
 
-"${WIX}/bin/heat.exe" dir "${DESTDIR}" -dr INSTALLLOCATION -cg files -o wix-tmp/files-${ARCH}.wxs -srd -sfrag -suid -ag -sw5150 -nologo
+"${WIX}/bin/heat.exe" dir "${DESTDIR}" -dr INSTALLLOCATION -cg files -o wix-tmp/files-${ARCH}.wxs -srd -sfrag -ag -sw5150 -nologo
 "${WIX}/bin/candle.exe" -arch ${WIX_ARCH} wix-tmp/files-${ARCH}.wxs -o wix-tmp/files-${WIX_ARCH}.wixobj -nologo
 "${WIX}/bin/candle.exe" -arch ${WIX_ARCH} wingit.wix -o wix-tmp/wingit-${WIX_ARCH}.wixobj -nologo \
 	"-dGitVersion=$(awk -F ' = ' '{print $2}' git/GIT-VERSION-FILE)"
