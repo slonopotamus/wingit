@@ -59,7 +59,7 @@ cp "${CURL_CFG}/libcurl_imp.lib" "${CURLDIR}/libcurl.lib"
 popd
 
 pushd "${DIR}/git"
-cmd.exe /c "${DIR}/helper.bat make MSVC=1 prefix=/ DEFAULT_EDITOR=/bin/vim.exe NO_TCLTK=1 CFLAGS=-Zi LDFLAGS=-debug clean install"
+cmd.exe /c "${DIR}/helper.bat make MSVC=1 prefix=/ DEFAULT_EDITOR=vim.exe NO_TCLTK=1 CFLAGS=-Zi LDFLAGS=-debug clean install"
 popd
 
 mkdir -p "${DESTDIR}/cmd"
