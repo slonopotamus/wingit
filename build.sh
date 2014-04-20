@@ -47,6 +47,7 @@ cp out32dll/ssleay32.lib out32dll/libeay32.lib .
 popd
 
 export CURLDIR="${DIR}/curl"
+CURL_CFG="release-dll-ssl-dll-zlib-dll"
 pushd "${CURLDIR}"
 cmd.exe /c "${DIR}/helper.bat buildconf.bat"
 popd
@@ -54,7 +55,7 @@ pushd "${CURLDIR}/lib"
 cmd.exe /c "${DIR}/helper.bat nmake /f Makefile.vc6 clean"
 cmd.exe /c "${DIR}/helper.bat nmake /f Makefile.vc6 MACHINE=${ARCH/amd64/x64} CFG=release-dll-ssl-dll-zlib-dll all"
 # For git
-cp libcurl_imp.lib "${CURLDIR}/libcurl.lib"
+cp "${CURL_CFG}/libcurl_imp.lib" "${CURLDIR}/libcurl.lib"
 popd
 
 pushd "${DIR}/git"
@@ -64,7 +65,7 @@ popd
 mkdir -p "${DESTDIR}/cmd"
 cmd.exe /c "helper.bat cl shell32.lib shlwapi.lib git-wrapper.c /Fe${DESTDIR}/cmd/git.exe"
 
-cp "${ZLIB_PATH}/zlib1.dll" "${CURLDIR}/lib/libcurl.dll" "${OPENSSLDIR}/out32dll/libeay32.dll" \
+cp "${ZLIB_PATH}/zlib1.dll" "${CURLDIR}/lib/${CURL_CFG}/libcurl.dll" "${OPENSSLDIR}/out32dll/libeay32.dll" \
 	"${OPENSSLDIR}/out32dll/ssleay32.dll" "${DESTDIR}/bin"
 
 mkdir -p mingw/bin
