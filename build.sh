@@ -83,6 +83,8 @@ fi
 
 rsync --progress -h -a mingw/msys/1.0/ stage-${ARCH}
 
+rsync --progress -h -a --exclude '.git' git-htmldocs/ stage-${ARCH}/share/doc/git-doc/
+
 if [ -z "${WIX}" ]; then
 	print "ERROR: WiX Toolset not installed"
 	exit 1

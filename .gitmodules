@@ -10,3 +10,6 @@
 [submodule "openssl"]
 	path = openssl
 	url = git@github.com:openssl/openssl.git
+[submodule "git-htmldocs"]
+	path = git-htmldocs
+	url = git@github.com:gitster/git-htmldocs.git
