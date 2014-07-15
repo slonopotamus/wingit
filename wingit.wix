@@ -3,7 +3,7 @@
      xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xsi:schemaLocation="http://schemas.microsoft.com/wix/2006/wi wix.xsd">
     <?define ProductName="WinGit" ?>
-    <?define ProductVersion="0.6" ?>
+    <?define ProductVersion="0.7" ?>
 
     <?if $(sys.BUILDARCH)="x86"?>
     <?define Program_Files="ProgramFilesFolder"?>
